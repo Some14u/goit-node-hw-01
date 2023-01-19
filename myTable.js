@@ -1,4 +1,4 @@
-const { printTable, Table } = require("console-table-printer");
+const { Table } = require("console-table-printer");
 const chalk = require("chalk");
 
 /** Changes the border color of the table */
