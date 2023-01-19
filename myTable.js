@@ -1,6 +1,7 @@
 const { printTable, Table } = require("console-table-printer");
 const chalk = require("chalk");
 
+/** Changes the border color of the table */
 function setBorderColor(table, color) {
   const ts = table.table.tableStyle;
   Object.keys(ts).forEach((key) => {
@@ -14,6 +15,7 @@ function setBorderColor(table, color) {
   });
 }
 
+/** Prints given list in a table form with some pretty formattings */
 function printAsTable(list, title) {
   if (!list || list.length === 0) return;
   const table = new Table({

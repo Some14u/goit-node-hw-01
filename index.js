@@ -38,15 +38,3 @@ function invokeAction({ action, id, name, email, phone }) {
 }
 
 invokeAction(argv);
-
-// async function test() {
-//   await contacts.listContacts();
-//   await contacts.getContactById(5);
-//   await contacts.getContactById(22);
-//   await contacts.removeContact(4);
-//   await contacts.addContact("Eugene", "some1@email.ua", "(067) 621-6636");
-//   await contacts.removeContact(11);
-//   await contacts.removeContact(44);
-// }
-
-// test();
