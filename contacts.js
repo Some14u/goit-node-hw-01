@@ -104,11 +104,16 @@ function saveContacts(contacts, path = contactsPath) {
   return fs.writeFile(path, data);
 }
 
+/** Tests if provided id is a positive integer */
+function validateId(id) {
+  return /^\d+$/.test(id);
+}
+
 /** Finds contact by id */
 function findById(contacts, id) {
-  const validatedId = parseInt(id);
-  if (isNaN(validatedId)) throw text.idParseError(id);
-  return contacts.find((contact) => contact.id === validatedId);
+  if (!validateId(id)) throw text.idParseError(id);
+  id = +id;
+  return contacts.find((contact) => contact.id === id);
 }
 
 /** Calculates the first empty id value */
@@ -137,7 +142,8 @@ const text = {
   unableToAdd: (name) =>
     `Unable to add a contact for person with the name "${name}". It is already in the list.`,
   addSuccess: (id) => `A new contact with id=${id} was succesfully added.`,
-  idParseError: (id) => `The id parameter must be a positive integer. Provided value is "${id}".`,
+  idParseError: (id) =>
+    `The id parameter must be a positive integer. Provided value is "${id}".`,
 };
 
 module.exports = {
