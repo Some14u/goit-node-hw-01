@@ -106,9 +106,9 @@ function saveContacts(contacts, path = contactsPath) {
 
 /** Finds contact by id */
 function findById(contacts, id) {
-  if (isNaN(id)) throw text.idParseError(id);
-  id = parseInt(id);
-  return contacts.find((contact) => contact.id === id);
+  const validatedId = parseInt(id);
+  if (isNaN(validatedId)) throw text.idParseError(id);
+  return contacts.find((contact) => contact.id === validatedId);
 }
 
 /** Calculates the first empty id value */
