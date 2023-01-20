@@ -22,6 +22,7 @@ function listContacts() {
  * @param {!number} contactId - id of the contact to look for
  */
 function getContactById(contactId) {
+  contactId = convertIdToInteger(contactId);
   return loadContacts()
     .then((contacts) => {
       const contact = findById(contacts, contactId);
@@ -36,6 +37,7 @@ function getContactById(contactId) {
  * @param {!number} contactId - id of the contact to remove
  */
 function removeContact(contactId) {
+  contactId = convertIdToInteger(contactId);
   return loadContacts()
     .then((contacts) => {
       if (!findById(contacts, contactId)) {
@@ -104,15 +106,14 @@ function saveContacts(contacts, path = contactsPath) {
   return fs.writeFile(path, data);
 }
 
-/** Tests if provided id is a positive integer */
-function validateId(id) {
-  return /^\d+$/.test(id);
+/** Converts id. Throws error if it isn't positive integer */
+function convertIdToInteger(id) {
+  if (!/^\d+$/.test(id)) throw text.idParseError(id);
+  return +id;
 }
 
 /** Finds contact by id */
 function findById(contacts, id) {
-  if (!validateId(id)) throw text.idParseError(id);
-  id = +id;
   return contacts.find((contact) => contact.id === id);
 }
 
