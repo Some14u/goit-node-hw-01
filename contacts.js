@@ -102,7 +102,7 @@ function loadContacts(path = contactsPath) {
 
 /** Saves contacts to file */
 function saveContacts(contacts, path = contactsPath) {
-  data = JSON.stringify(contacts, null, 2);
+  const data = JSON.stringify(contacts, null, 2);
   return fs.writeFile(path, data);
 }
 
